@@ -57,9 +57,16 @@
       </div>
     </div>
 
-    <button class="save" id="saveBtn">💾 Save Meeting Notes</button>
+    <button id="saveBtn" class="save-btn">
+    💾 Save Meeting Notes
+</button>
+
+<button id="downloadPdfBtn" class="pdf-btn">
+    📄 Download PDF
+</button>
   </main>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="{% static 'meetings/js/script.js' %}"></script>
 </body>
 </html>

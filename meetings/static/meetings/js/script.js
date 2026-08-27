@@ -144,3 +144,173 @@ $("newMeetingBtn").onclick=()=>{currentId=null;$("meetingTitle").value="";$("att
 $("summaryBtn").onclick=()=>{const t=transcript.value.trim();if(!t)return alert("Add transcript first.");$("summary").textContent=(t.match(/[^.!?]+[.!?]+/g)||[t]).slice(0,3).join(" ");};
 $("addActionBtn").onclick=()=>{const d=document.createElement("div");d.className="action-row";d.innerHTML='<input placeholder="Action item"><input type="date"><button>Delete</button>';d.querySelector("button").onclick=()=>d.remove();$("actions").appendChild(d);};
 render();updateCount();
+document
+    .getElementById("downloadPdfBtn")
+    .addEventListener("click", function () {
+
+        const { jsPDF } = window.jspdf;
+
+        const pdf = new jsPDF();
+
+        const title =
+            document.getElementById("meetingTitle").value ||
+            "Meeting Notes";
+
+        const date =
+            document.getElementById("meetingDate").value;
+
+        const attendees =
+            document.getElementById("attendees").value;
+
+        const transcript =
+            document.getElementById("transcript").value;
+
+        const summary =
+            document.getElementById("summary").innerText;
+
+
+        let y = 20;
+
+        pdf.setFontSize(20);
+
+        pdf.text(
+            "VOICE MEETING NOTES",
+            20,
+            y
+        );
+
+        y += 15;
+
+
+        pdf.setFontSize(16);
+
+        pdf.text(
+            title,
+            20,
+            y
+        );
+
+        y += 12;
+
+
+        pdf.setFontSize(11);
+
+        pdf.text(
+            `Date: ${date || "Not provided"}`,
+            20,
+            y
+        );
+
+        y += 8;
+
+
+        const attendeeLines =
+            pdf.splitTextToSize(
+                `Attendees: ${attendees || "Not provided"}`,
+                170
+            );
+
+        pdf.text(
+            attendeeLines,
+            20,
+            y
+        );
+
+        y += attendeeLines.length * 7 + 8;
+
+
+        pdf.setFontSize(14);
+
+        pdf.text(
+            "Transcript",
+            20,
+            y
+        );
+
+        y += 9;
+
+
+        pdf.setFontSize(10);
+
+        const transcriptLines =
+            pdf.splitTextToSize(
+                transcript || "No transcript available.",
+                170
+            );
+
+
+        transcriptLines.forEach(function (line) {
+
+            if (y > 280) {
+                pdf.addPage();
+                y = 20;
+            }
+
+            pdf.text(
+                line,
+                20,
+                y
+            );
+
+            y += 6;
+        });
+
+
+        y += 10;
+
+
+        if (y > 250) {
+            pdf.addPage();
+            y = 20;
+        }
+
+
+        pdf.setFontSize(14);
+
+        pdf.text(
+            "Meeting Summary",
+            20,
+            y
+        );
+
+        y += 9;
+
+
+        pdf.setFontSize(10);
+
+        const summaryLines =
+            pdf.splitTextToSize(
+                summary || "No summary available.",
+                170
+            );
+
+
+        summaryLines.forEach(function (line) {
+
+            if (y > 280) {
+                pdf.addPage();
+                y = 20;
+            }
+
+            pdf.text(
+                line,
+                20,
+                y
+            );
+
+            y += 6;
+        });
+
+
+        const cleanTitle =
+            title.replace(
+                /[^a-zA-Z0-9]/g,
+                "_"
+            );
+
+
+        pdf.save(
+            `${cleanTitle}_Meeting_Notes.pdf`
+        );
+
+    });
