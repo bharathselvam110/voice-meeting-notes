@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Voice Notes</title>
+<link rel="stylesheet" href="{% static 'meetings/css/style.css' %}">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <h2>🎙 Voice Notes</h2>
+    <button id="newMeetingBtn">+ New Meeting</button>
+    <input id="searchInput" placeholder="Search meetings...">
+    <h4>RECENT MEETINGS</h4>
+    <div id="meetingList"></div>
+  </aside>
+
+  <main>
+    <h1>New Meeting</h1>
+    <p class="muted">Record, transcribe and summarize your meeting</p>
+
+    <div class="grid3">
+      <div class="card"><label>Meeting Title</label><input id="meetingTitle"></div>
+      <div class="card"><label>Meeting Date</label><input id="meetingDate" type="date"></div>
+      <div class="card"><label>Attendees</label><input id="attendees"></div>
+    </div>
+
+    <div class="workspace">
+      <div class="card">
+        <h3>🎤 Voice Recording</h3>
+        <div class="buttons">
+          <button class="start" id="startBtn">Start Recording</button>
+          <button class="stop" id="stopBtn">Stop</button>
+        </div>
+        <p id="status">Ready to record</p>
+      </div>
+
+      <div class="card">
+        <h3>📝 Live Transcript</h3>
+        <textarea id="transcript" placeholder="Your voice transcript appears here..."></textarea>
+        <p id="count">0 words • 0 characters</p>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <h3>✨ AI Summary</h3>
+        <button id="summaryBtn">Generate Summary</button>
+        <p id="summary">Your summary will appear here.</p>
+      </div>
+      <div class="card">
+        <h3>✅ Action Items</h3>
+        <button id="addActionBtn">+ Add Action Item</button>
+        <div id="actions"></div>
+      </div>
+    </div>
+
+    <button class="save" id="saveBtn">💾 Save Meeting Notes</button>
+  </main>
+</div>
+<script src="{% static 'meetings/js/script.js' %}"></script>
+</body>
+</html>

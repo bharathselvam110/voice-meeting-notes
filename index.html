@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Voice Notes</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                <i data-lucide="mic"></i>
+            </div>
+
+            <div>
+                <h2>Voice Notes</h2>
+                <p>Meeting Notes</p>
+            </div>
+
+            <button class="menu-btn">
+                <i data-lucide="menu"></i>
+            </button>
+
+        </div>
+
+
+        <button
+            class="new-meeting-btn"
+            id="newMeetingBtn"
+        >
+            <i data-lucide="plus"></i>
+            New Meeting
+        </button>
+
+
+        <div class="search-box">
+
+            <i data-lucide="search"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search meetings..."
+            >
+
+        </div>
+
+
+        <p class="section-label">
+            RECENT MEETINGS
+        </p>
+
+
+        <div
+            id="recentMeetings"
+            class="meeting-list"
+        >
+        </div>
+
+
+        <button class="view-all-btn">
+
+            <i data-lucide="list"></i>
+
+            <span>
+                View All Meetings
+            </span>
+
+            <i data-lucide="chevron-right"></i>
+
+        </button>
+
+
+        <!-- User -->
+
+        <div class="user-box">
+
+            <div class="avatar">
+                B
+            </div>
+
+            <div class="user-info">
+
+                <strong>
+                    Bharath
+                </strong>
+
+                <span>
+                    bharath@example.com
+                </span>
+
+            </div>
+
+            <i data-lucide="chevron-down"></i>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div class="title-section">
+
+                <div class="title-icon">
+                    <i data-lucide="audio-lines"></i>
+                </div>
+
+                <div>
+
+                    <h1>
+                        New Meeting
+                    </h1>
+
+                    <p>
+                        Record, transcribe and summarize your meeting
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button class="icon-btn">
+                    <i data-lucide="sun"></i>
+                </button>
+
+                <button class="icon-btn notification">
+
+                    <i data-lucide="bell"></i>
+
+                    <span class="notification-count">
+                        3
+                    </span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= MEETING DETAILS ================= -->
+
+        <section class="meeting-details">
+
+
+            <div class="input-card">
+
+                <label>
+                    Meeting Title
+                </label>
+
+                <input
+                    type="text"
+                    id="meetingTitle"
+                    value="Project Planning Meeting"
+                >
+
+            </div>
+
+
+            <div class="input-card">
+
+                <label>
+                    Meeting Date
+                </label>
+
+                <input
+                    type="date"
+                    id="meetingDate"
+                >
+
+            </div>
+
+
+            <div class="input-card">
+
+                <label>
+                    Attendees
+                </label>
+
+                <input
+                    type="text"
+                    id="attendees"
+                    value="Bharath, Rahul, Priya, Arjun"
+                >
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ================= RECORD + TRANSCRIPT ================= -->
+
+        <section class="workspace">
+
+
+            <!-- Recording -->
+
+            <div class="card recording-card">
+
+                <div class="card-title">
+
+                    <div class="small-icon purple">
+                        <i data-lucide="mic"></i>
+                    </div>
+
+                    <h3>
+                        Voice Recording
+                    </h3>
+
+                </div>
+
+
+                <div class="record-buttons">
+
+                    <button
+                        class="record-btn start"
+                        id="startBtn"
+                    >
+
+                        <i data-lucide="mic"></i>
+
+                        Start Recording
+
+                    </button>
+
+
+                    <button
+                        class="record-btn stop"
+                        id="stopBtn"
+                    >
+
+                        <i data-lucide="square"></i>
+
+                        Stop Recording
+
+                    </button>
+
+                </div>
+
+
+                <div class="record-status">
+
+                    <div>
+
+                        <span
+                            class="status-dot"
+                            id="statusDot"
+                        ></span>
+
+                        <span id="recordStatus">
+                            Ready to record
+                        </span>
+
+                    </div>
+
+                    <strong id="timer">
+                        00:00
+                    </strong>
+
+                </div>
+
+
+                <div class="tips">
+
+                    <h4>
+                        Recording Tips
+                    </h4>
+
+
+                    <p>
+                        <span>✓</span>
+                        Speak clearly and at a moderate pace
+                    </p>
+
+                    <p>
+                        <span>✓</span>
+                        Ensure minimal background noise
+                    </p>
+
+                    <p>
+                        <span>✓</span>
+                        Stay close to your microphone
+                    </p>
+
+                    <p>
+                        <span>✓</span>
+                        Pause briefly between topics
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Transcript -->
+
+            <div class="card transcript-card">
+
+
+                <div class="transcript-header">
+
+
+                    <div class="card-title">
+
+                        <div class="small-icon purple">
+                            <i data-lucide="file-text"></i>
+                        </div>
+
+                        <h3>
+                            Live Transcript
+                        </h3>
+
+                    </div>
+
+
+                    <div class="autosave">
+
+                        <span></span>
+
+                        Auto-saving...
+
+                    </div>
+
+
+                </div>
+
+
+                <textarea
+                    id="transcript"
+                    placeholder="Your voice transcript will appear here..."
+                ></textarea>
+
+
+                <div class="transcript-footer">
+
+                    <span id="wordCount">
+                        0 words • 0 characters
+                    </span>
+
+
+                    <button
+                        id="clearTranscript"
+                        class="outline-btn"
+                    >
+
+                        <i data-lucide="trash-2"></i>
+
+                        Clear Transcript
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ================= AI + ACTIONS ================= -->
+
+        <section class="bottom-grid">
+
+
+            <!-- Summary -->
+
+            <div class="card summary-card">
+
+
+                <div class="summary-header">
+
+
+                    <div class="card-title">
+
+                        <div class="small-icon purple">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+
+                        <h3>
+                            AI Summary
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        class="summary-btn"
+                        id="summaryBtn"
+                    >
+
+                        <i data-lucide="sparkles"></i>
+
+                        Generate Summary
+
+                    </button>
+
+
+                </div>
+
+
+                <div
+                    id="summaryText"
+                    class="summary-text"
+                >
+
+                    Your generated meeting summary will appear here.
+
+                </div>
+
+
+            </div>
+
+
+            <!-- Action Items -->
+
+            <div class="card action-card">
+
+
+                <div class="action-header">
+
+
+                    <div class="card-title">
+
+                        <div class="small-icon green">
+                            <i data-lucide="circle-check"></i>
+                        </div>
+
+                        <h3>
+                            Action Items
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        class="outline-btn"
+                        id="addActionBtn"
+                    >
+
+                        <i data-lucide="plus"></i>
+
+                        Add Action Item
+
+                    </button>
+
+
+                </div>
+
+
+                <div id="actionItems">
+
+
+                    <div class="action-item">
+
+                        <input
+                            type="checkbox"
+                        >
+
+                        <input
+                            class="action-text"
+                            value="Bharath – Complete frontend design"
+                        >
+
+                        <input
+                            class="action-date"
+                            type="date"
+                        >
+
+                        <button class="delete-action">
+                            <i data-lucide="trash-2"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="action-item">
+
+                        <input
+                            type="checkbox"
+                        >
+
+                        <input
+                            class="action-text"
+                            value="Rahul – Develop backend APIs"
+                        >
+
+                        <input
+                            class="action-date"
+                            type="date"
+                        >
+
+                        <button class="delete-action">
+                            <i data-lucide="trash-2"></i>
+                        </button>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ================= SAVE ================= -->
+
+
+        <button
+            class="save-btn"
+            id="saveBtn"
+        >
+
+            <i data-lucide="save"></i>
+
+            Save Meeting Notes
+
+        </button>
+
+
+    </main>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
